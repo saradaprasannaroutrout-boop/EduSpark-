@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>EduSpark | Learn & Grow</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f4ff;
+            color: #222;
+            line-height: 1.6;
+        }
+
+        header {
+            background: #24245c;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 32px;
+        }
+
+        nav {
+            background: #39398a;
+            padding: 12px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 12px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #ffd700;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(
+                135deg, #4545a5, #06b6d4
+            );
+            color: white;
+        }
+
+        .hero h2 {
+            font-size: 38px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 25px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: #ffd700;
+            color: #222;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: white;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: auto;
+            padding: 35px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 30px;
+            margin-bottom: 25px;
+            color: #24245c;
+        }
+
+        .search-box {
+            display: block;
+            width: 100%;
+            max-width: 450px;
+            margin: 0 auto 25px;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 12px #00000012;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px #00000020;
+        }
+
+        .card .icon {
+            font-size: 42px;
+        }
+
+        .card h3 {
+            margin: 12px 0;
+            color: #39398a;
+        }
+
+        .card p {
+            margin-bottom: 15px;
+        }
+
+        .notes {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .notes h3 {
+            color: #39398a;
+            margin-bottom: 10px;
+        }
+
+        .notes ul {
+            padding-left: 22px;
+        }
+
+        .quiz-box {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            max-width: 650px;
+            margin: auto;
+            box-shadow: 0 4px 12px #00000012;
+        }
+
+        .quiz-box h3 {
+            margin-bottom: 15px;
+        }
+
+        .quiz-option {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: #f5f6ff;
+            cursor: pointer;
+        }
+
+        .quiz-option:hover {
+            background: #dedfff;
+        }
+
+        #result {
+            margin: 15px 0;
+            font-weight: bold;
+        }
+
+        .coding-box {
+            background: #181b2e;
+            color: #b9ffd4;
+            padding: 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin-top: 15px;
+        }
+
+        .coding-box pre {
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+        }
+
+        footer {
+            background: #24245c;
+            color: white;
+            text-align: center;
+            padding: 25px 15px;
+            margin-top: 30px;
+        }
+
+        footer h3 {
+            color: #ffd700;
+            margin-bottom: 8px;
+        }
+
+        .dark-mode {
+            background: #151525;
+            color: #eee;
+        }
+
+        .dark-mode .container .section-title {
+            color: #aeadff;
+        }
+
+        .dark-mode .card,
+        .dark-mode .notes,
+        .dark-mode .quiz-box {
+            background: #25253d;
+            color: #eee;
+        }
+
+        .dark-mode .card h3,
+        .dark-mode .notes h3 {
+            color: #aeadff;
+        }
+
+        .dark-mode .search-box {
+            background: #25253d;
+            color: white;
+            border-color: #555;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 25px;
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 5px 8px;
+                font-size: 14px;
+            }
+
+            .hero {
+                padding: 40px 15px;
+            }
+
+            .hero h2 {
+                font-size: 29px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .section-title {
+                font-size: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header>
+        <h1>🎓 EduSpark</h1>
+        <p>Learn Today, Lead Tomorrow!</p>
+    </header>
+
+    <!-- NAVIGATION -->
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#subjects">Subjects</a>
+        <a href="#notes">Study Notes</a>
+        <a href="#quiz">Quiz</a>
+        <a href="#coding">Coding</a>
+
+        <button class="btn" onclick="toggleTheme()">
+            🌙 Theme
+        </button>
+    </nav>
+
+    <!-- HOME -->
+
+    <section class="hero" id="home">
+        <h2>Welcome to EduSpark! 🚀</h2>
+
+        <p>
+            Your journey to knowledge starts here.
+            Learn, practise and grow every day!
+        </p>
+
+        <a href="#subjects" class="btn">
+            Explore Subjects
+        </a>
+    </section>
+
+    <!-- SUBJECTS -->
+
+    <section class="container" id="subjects">
+
+        <h2 class="section-title">
+            📚 Explore Subjects
+        </h2>
+
+        <input
+            type="search"
+            id="search"
+            class="search-box"
+            placeholder="Search your subject..."
+            oninput="searchSubjects()"
+        >
+
+        <div class="cards" id="subjectCards">
+
+            <div class="card" data-name="mathematics maths">
+                <div class="icon">📐</div>
+                <h3>Mathematics</h3>
+                <p>Learn algebra, geometry and trigonometry.</p>
+                <button class="btn"
+                    onclick="showInfo('Mathematics',
+                    'Practise formulas, algebra and trigonometry.')">
+                    Learn More
+                </button>
+            </div>
+
+            <div class="card" data-name="physics">
+                <div class="icon">⚛️</div>
+                <h3>Physics</h3>
+                <p>Understand force, motion, energy and units.</p>
+                <button class="btn"
+                    onclick="showInfo('Physics',
+                    'Study force, motion, work, power and energy.')">
+                    Learn More
+                </button>
+            </div>
+
+            <div class="card" data-name="chemistry">
+                <div class="icon">🧪</div>
+                <h3>Chemistry</h3>
+                <p>Discover atoms, molecules and reactions.</p>
+                <button class="btn"
+                    onclick="showInfo('Chemistry',
+                    'Learn atomic numbers, elements and chemical reactions.')">
+                    Learn More
+                </button>
+            </div>
+
+            <div class="card" data-name="english communication">
+                <div class="icon">📝</div>
+                <h3>English</h3>
+                <p>Improve grammar and communication skills.</p>
+                <button class="btn"
+                    onclick="showInfo('English',
+                    'Practise grammar, tenses and formal writing.')">
+                    Learn More
+                </button>
+            </div>
+
+            <div class="card" data-name="evs environment pollution">
+                <div class="icon">🌍</div>
+                <h3>Environmental Studies</h3>
+                <p>Learn about pollution and our environment.</p>
+                <button class="btn"
+                    onclick="showInfo('Environmental Studies',
+                    'Study air, water, soil and noise pollution.')">
+                    Learn More
+                </button>
+            </div>
+
+            <div class="card" data-name="computer programming coding">
+                <div class="icon">💻</div>
+                <h3>Computer Science</h3>
+                <p>Start learning HTML, C and Python programming.</p>
+                <button class="btn"
+                    onclick="showInfo('Computer Science',
+                    'Explore coding, computer basics and web development.')">
+                    Learn More
+                </button>
+            </div>
+
+        </div>
+
+        <p id="noResults" style="text-align:center;display:none;">
+            No subjects found. Try another search.
+        </p>
+
+    </section>
+
+    <!-- STUDY NOTES -->
+
+    <section class="container" id="notes">
+
+        <h2 class="section-title">
+            📖 Quick Study Notes
+        </h2>
+
+        <div class="notes">
+            <h3>1. SI Fundamental Quantities</h3>
+            <ul>
+                <li>Length — metre (m)</li>
+                <li>Mass — kilogram (kg)</li>
+                <li>Time — second (s)</li>
+                <li>Temperature — kelvin (K)</li>
+                <li>Electric Current — ampere (A)</li>
+            </ul>
+        </div>
+
+        <div class="notes">
+            <h3>2. Communication</h3>
+            <p>
+                Communication is the process of sending and
+                receiving information between people.
+            </p>
+            <p>
+                Main elements: Sender, Message, Channel,
+                Receiver and Feedback.
+            </p>
+        </div>
+
+        <div class="notes">
+            <h3>3. Environmental Pollution</h3>
+            <p>
+                Pollution is the contamination of the
+                environment by harmful substances.
+            </p>
+            <p>
+                Main types: Air, Water, Soil and Noise Pollution.
+            </p>
+        </div>
+
+    </section>
+
+    <!-- QUIZ -->
+
+    <section class="container" id="quiz">
+
+        <h2 class="section-title">
+            🧠 Test Your Knowledge
+        </h2>
+
+        <div class="quiz-box">
+
+            <p id="questionNumber">Question 1 of 5</p>
+
+            <h3 id="question">
+                What does HTML stand for?
+            </h3>
+
+            <div id="options"></div>
+
+            <p id="result" aria-live="polite"></p>
+
+            <button
+                class="btn"
+                id="nextButton"
+                onclick="nextQuestion()"
+                style="display:none;">
+                Next Question →
+            </button>
+
+            <button
+                class="btn"
+                id="restartButton"
+                onclick="restartQuiz()"
+                style="display:none;">
+                Try Again
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- CODING -->
+
+    <section class="container" id="coding">
+
+        <h2 class="section-title">
+            👨‍💻 Programming Zone
+        </h2>
+
+        <div class="notes">
+
+            <h3>🌐 HTML Example</h3>
+
+            <p>HTML creates the structure of a web page.</p>
+
+            <div class="coding-box">
+<pre>&lt;h1&gt;Hello, World!&lt;/h1&gt;
+&lt;p&gt;I am learning HTML.&lt;/p&gt;</pre>
+            </div>
+
+        </div>
+
+        <div class="notes">
+
+            <h3>🐍 Python Example</h3>
+
+            <p>A simple Python program:</p>
+
+            <div class="coding-box">
+<pre>name = input("Enter your name: ")
+print("Hello", name)</pre>
+            </div>
+
+        </div>
+
+        <div class="notes">
+
+            <h3>©️ C Programming Example</h3>
+
+            <p>Your first C program:</p>
+
+            <div class="coding-box">
+<pre>#include &lt;stdio.h&gt;
+
+int main(void) {
+    printf("Hello, Student!");
+    return 0;
+}</pre>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+
+    <footer>
+        <h3>EduSpark | Learn & Grow</h3>
+
+        <p>Keep Learning. Keep Growing. 🚀</p>
+
+        <br>
+
+        <p>
+            Developed by
+            <strong>Sarda Prasana Rout</strong>
+        </p>
+
+        <p>© 2026 EduSpark. All rights reserved.</p>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        // Dark mode
+
+        function toggleTheme() {
+            document.body.classList.toggle("dark-mode");
+        }
+
+        // Subject search
+
+        function searchSubjects() {
+
+            let input = document
+                .getElementById("search")
+                .value.toLowerCase();
+
+            let cards = document.querySelectorAll(
+                "#subjectCards .card"
+            );
+
+            let visible = 0;
+
+            cards.forEach(function(card) {
+
+                let name = card.dataset.name.toLowerCase();
+
+                if (name.includes(input)) {
+                    card.style.display = "";
+                    visible++;
+                } else {
+                    card.style.display = "none";
+                }
+
+            });
+
+            document.getElementById("noResults")
+                .style.display = visible === 0 ? "block" : "none";
+        }
+
+        // Subject information
+
+        function showInfo(title, message) {
+            alert(title + "\n\n" + message);
+        }
+
+        // Quiz questions
+
+        const questions = [
+
+            {
+                question: "What does HTML stand for?",
+                options: [
+                    "HyperText Markup Language",
+                    "HighText Machine Language",
+                    "Hyper Transfer Main Link",
+                    "Home Tool Markup Language"
+                ],
+                answer: 0
+            },
+
+            {
+                question: "What is the SI unit of force?",
+                options: [
+                    "Joule",
+                    "Newton",
+                    "Watt",
+                    "Pascal"
+                ],
+                answer: 1
+            },
+
+            {
+                question: "Which is a programming language?",
+                options: [
+                    "Python",
+                    "HDMI",
+                    "Bluetooth",
+                    "Wi-Fi"
+                ],
+                answer: 0
+            },
+
+            {
+                question: "How many sides does a triangle have?",
+                options: [
+                    "Two",
+                    "Three",
+                    "Four",
+                    "Five"
+                ],
+                answer: 1
+            },
+
+            {
+                question: "Which gas do plants absorb during photosynthesis?",
+                options: [
+                    "Oxygen",
+                    "Helium",
+                    "Carbon dioxide",
+                    "Hydrogen"
+                ],
+                answer: 2
+            }
+
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let answered = false;
+
+        function loadQuestion() {
+
+            answered = false;
+
+            let q = questions[currentQuestion];
+
+            document.getElementById("questionNumber")
+                .textContent =
+                "Question " + (currentQuestion + 1) +
+                " of " + questions.length;
+
+            document.getElementById("question")
+                .textContent = q.question;
+
+            document.getElementById("result")
+                .textContent = "";
+
+            document.getElementById("nextButton")
+                .style.display = "none";
+
+            document.getElementById("restartButton")
+                .style.display = "none";
+
+            let optionsDiv = document.getElementById("options");
+
+            optionsDiv.innerHTML = "";
+
+            q.options.forEach(function(option, index) {
+
+                let button = document.createElement("button");
+
+                button.className = "quiz-option";
+                button.textContent = option;
+
+                button.onclick = function() {
+                    checkAnswer(index);
+                };
+
+                optionsDiv.appendChild(button);
+
+            });
+
+        }
+
+        function checkAnswer(selected) {
+
+            if (answered) return;
+
+            answered = true;
+
+            let q = questions[currentQuestion];
+
+            let buttons = document.querySelectorAll(".quiz-option");
+
+            buttons.forEach(function(button) {
+                button.disabled = true;
+            });
+
+            if (selected === q.answer) {
+
+                score++;
+
+                document.getElementById("result")
+                    .textContent = "Correct! 🎉 Well done!";
+
+            } else {
+
+                document.getElementById("result")
+                    .textContent =
+                    "Incorrect. Correct answer: " +
+                    q.options[q.answer];
+
+            }
+
+            if (currentQuestion < questions.length - 1) {
+
+                document.getElementById("nextButton")
+                    .style.display = "inline-block";
+
+            } else {
+
+                document.getElementById("question")
+                    .textContent =
+                    "Quiz Completed! Your score: " +
+                    score + "/" + questions.length;
+
+                document.getElementById("questionNumber")
+                    .textContent = "Quiz Finished";
+
+                document.getElementById("restartButton")
+                    .style.display = "inline-block";
+
+            }
+
+        }
+
+        function nextQuestion() {
+
+            currentQuestion++;
+
+            loadQuestion();
+
+        }
+
+        function restartQuiz() {
+
+            currentQuestion = 0;
+            score = 0;
+
+            loadQuestion();
+
+        }
+
+        // Start the quiz
+
+        loadQuestion();
+
+    </script>
+
+</body>
+</html>
